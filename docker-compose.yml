@@ -1,0 +1,15 @@
+services:
+  mon-postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: monmotdepasse
+      POSTGRES_DB: mabase
+    ports:
+      - "5432:5432"
+
+  mon-app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mon-postgres
